@@ -1,0 +1,21 @@
+name: Review
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: ./.github/actions/install
+
+      - name: Run linters
+        run: nps lint
+
+      - name: Run tests
+        run: nps test

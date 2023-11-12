@@ -1,0 +1,8 @@
+severity: low
+exclude:
+  - message: Dependencies
+    paths:
+      - node_modules
+      - packages.dhall
+      - yarn-error.log
+      - yarn.lock

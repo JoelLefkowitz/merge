@@ -1,0 +1,27 @@
+{
+  "language": "en",
+  "ignorePaths": [
+    ".DS_Store",
+    ".git",
+    ".gitignore",
+    ".spago",
+    "output",
+    "venv"
+  ],
+  "dictionaries": ["node", "softwareTerms", "typescript"],
+  "words": [
+    "autofix",
+    "camelcase",
+    "dhall",
+    "esbenp",
+    "huskyrc",
+    "loglevel",
+    "mobily",
+    "plusplus",
+    "purescript",
+    "purs",
+    "spago",
+    "trufflehog",
+    "venv"
+  ]
+}
