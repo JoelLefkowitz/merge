@@ -2,7 +2,10 @@ severity: low
 exclude:
   - message: Dependencies
     paths:
+      - .spago
       - node_modules
+      - output
       - packages.dhall
+      - venv
       - yarn-error.log
       - yarn.lock
