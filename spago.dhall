@@ -1,13 +1,14 @@
 { name = "functional"
 , dependencies =
   [ "arrays"
-  , "assert"
+  , "console"
   , "effect"
   , "integers"
   , "maybe"
   , "numbers"
   , "prelude"
-  , "quickcheck"
+  , "strings"
+  , "test-unit"
   , "tuples"
   ]
 , packages = ./packages.dhall
