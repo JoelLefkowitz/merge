@@ -21,9 +21,11 @@
     "plusplus",
     "purescript",
     "purs",
+    "quickcheck",
     "spago",
     "sublist",
     "trufflehog",
+    "uncurry",
     "venv"
   ]
 }
