@@ -18,4 +18,4 @@ jobs:
         run: nps lint
 
       - name: Run tests
-        run: nps test
+        run: spago test

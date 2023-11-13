@@ -7,9 +7,10 @@ const scripts = {
     "tsc --noEmit",
     "trufflehog3",
   ],
-  format: ["prettier . --write --loglevel warn"],
-  start: ["spago run"],
-  test: ["spago test"],
+  format: [
+    "purs-tidy format-in-place src test",
+    "prettier . --write --loglevel warn",
+  ],
 };
 
 export default {

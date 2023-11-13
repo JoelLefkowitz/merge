@@ -51,7 +51,7 @@ runs:
       shell: bash
       run: |
         yarn install --frozen-lockfile
-        yarn global add nps ts-node
+        yarn global add ts-node nps purs-tidy
 
     - name: Install python dependencies
       shell: bash

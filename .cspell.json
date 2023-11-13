@@ -14,6 +14,7 @@
     "camelcase",
     "dhall",
     "esbenp",
+    "foldl",
     "huskyrc",
     "loglevel",
     "mobily",
@@ -21,6 +22,7 @@
     "purescript",
     "purs",
     "spago",
+    "sublist",
     "trufflehog",
     "venv"
   ]
