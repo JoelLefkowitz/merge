@@ -1,26 +1,57 @@
 module Merge.Sort where
 
 import Prelude
-import Data.Array (foldl, head, length, range, reverse)
-import Data.Int (ceil, toNumber)
+import Data.Array (concat, foldl, head, length, range, reverse)
 import Data.Maybe (fromMaybe)
-import Data.Number (log)
-import Data.Tuple (fst, snd, uncurry)
-import Merge.Pairs (pairs, pairsSep, order)
-import Merge.Arrays (split, sublist)
+import Data.Tuple (uncurry, Tuple(..))
+import Merge.Array (split, sublist)
+import Merge.Number (bits)
+import Merge.Pair (twins, pairs)
 
+-- merge [1, 2, 5, 6, 7] [3, 4, 6, 8, 9] = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9]
+-- 
+-- zipped = foldl join [] $ twins x:
+-- [a, b] -> [ acc, pure a, sublist a b y ]: 
+-- [1, 2] -> [[             ], [1], [    ]]
+-- [2, 5] -> [[1            ], [2], [3, 4]]
+-- [5, 6] -> [[1, 2, 3, 4   ], [5], [    ]]
+-- [6, 7] -> [[1, 2, 3, 4, 5], [6], [6   ]]
+-- [1, 2, 3, 4, 5, 6, 6]
+-- 
+-- [last x]:
+-- [7]
+-- 
+-- remainder = sublist (last x) (last y + 1) y:
+-- [8, 9]
 merge :: Array Int -> Array Int -> Array Int
-merge arr [] = arr
-merge [] arr = arr
-merge _arr1 _arr2 = zipped <> final <> remainder
-  where
-  zipped = foldl (\acc x -> acc <> [ fst x ] <> sublist (fst x) (snd x) arr2) [] (pairs arr1)
-  arr1 = fst $ order _arr1 _arr2
-  arr2 = snd $ order _arr1 _arr2
-  arr1End = ((fromMaybe 0 $ head (reverse arr1)))
-  arr2End = (fromMaybe 0 $ head (reverse arr2))
-  final = fromMaybe [] ((\x -> [ x ]) <$> (head $ reverse arr1))
-  remainder = if arr1End < arr2End then sublist arr1End arr2End arr2 else []
+merge [] x = x
+merge x y
+  | head x > head y = merge y x
+  | otherwise = concat [ zipped, [ last x ], remainder ]
+      where
+      combine acc (Tuple a b) = concat [ acc, [ a ], sublist a b y ]
+      last = fromMaybe 0 <<< head <<< reverse
+      zipped = foldl combine [] $ twins x
+      remainder = if last x <= last y then sublist (last x) (last y + 1) y else []
 
+-- mergeSort [1, 2, 7, 8, 7] = [1, 2, 7, 7 8]
+-- 
+-- acc:
+-- [[ 1 ], [ 2 ], [ 7 ], [ 8 ], [ 7 ]]
+-- [[ 1, 2 ], [ 7, 8 ], [ 7 ]]
+-- [[ 1, 2, 7, 8 ], [ 7 ]]
+-- [[ 1, 2, 7, 7 8 ]]
+-- 
+-- merge calls:
+-- merge [1         ], [2   ] -> [1, 2         ]
+-- merge [7         ], [8   ] -> [7, 8         ]
+-- merge [1, 2      ], [7, 8] -> [1, 2, 7, 8   ]
+-- merge [1, 2, 7, 8], [7   ] -> [1, 2, 7, 7, 8]
 mergeSort :: Array Int -> Array Int
-mergeSort arr = join $ foldl (\acc _ -> (uncurry merge) <$> (pairsSep $ acc)) (split arr) (range 0 (ceil $ log $ toNumber (length arr)))
+mergeSort [] = []
+mergeSort [ x ] = [ x ]
+mergeSort arr = join $ foldl combine (split arr) steps
+  where
+  pad x = if (mod (length x) 2 == 0) then x else x <> [ [] ]
+  combine acc _ = uncurry merge <$> pairs (pad acc)
+  steps = range 0 (bits $ length arr)

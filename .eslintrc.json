@@ -10,7 +10,13 @@
     "browser": true,
     "node": true
   },
-  "ignorePatterns": [".spago", "node_modules", "output", "venv"],
+  "ignorePatterns": [
+    ".psci_modules",
+    ".spago",
+    "node_modules",
+    "output",
+    "venv"
+  ],
   "rules": {
     "arrow-body-style": "error",
     "block-scoped-var": "warn",

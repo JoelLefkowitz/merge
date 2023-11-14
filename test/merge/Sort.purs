@@ -1,11 +1,9 @@
 module Test.Merge.Sort where
 
 import Prelude
-import Data.Array (sort)
 import Merge.Sort (merge, mergeSort)
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert as Assert
-import Test.Unit.QuickCheck (quickCheck)
 
 testMergeSort :: TestSuite
 testMergeSort = suite "Sort" do
@@ -19,8 +17,8 @@ testMergeSort = suite "Sort" do
     Assert.equal [ 1 ]
       $ merge [] [ 1 ]
 
-    -- Assert.equal [ 1, 1 ]
-    --   $ merge [ 1 ] [ 1 ]
+    Assert.equal [ 1, 1 ]
+      $ merge [ 1 ] [ 1 ]
 
     Assert.equal [ 1, 2 ]
       $ merge [ 1 ] [ 2 ]
@@ -37,5 +35,30 @@ testMergeSort = suite "Sort" do
     Assert.equal [ 1, 2, 3, 4, 5, 6 ]
       $ merge [ 3, 4, 6 ] [ 1, 2, 5 ]
 
+    Assert.equal [ 1, 2, 3, 3, 4 ]
+      $ merge [ 1, 2, 3, 4 ] [ 3 ]
+
+    Assert.equal [ 1, 2, 3, 4, 4 ]
+      $ merge [ 1, 2, 3, 4 ] [ 4 ]
+
+    Assert.equal [ 1, 2, 3, 8, 16, 17 ]
+      $ merge [ 1, 2, 16, 17 ] [ 3, 8 ]
+
   test "mergeSort" do
-    quickCheck \x -> mergeSort x == sort x
+    Assert.equal []
+      $ mergeSort []
+
+    Assert.equal [ 1 ]
+      $ mergeSort [ 1 ]
+
+    Assert.equal [ 1, 2 ]
+      $ mergeSort [ 1, 2 ]
+
+    Assert.equal [ 1, 2 ]
+      $ mergeSort [ 2, 1 ]
+
+    Assert.equal [ 1, 2, 3 ]
+      $ mergeSort [ 3, 2, 1 ]
+
+    Assert.equal [ 1, 2, 3, 3, 4 ]
+      $ mergeSort [ 1, 2, 3, 4, 3 ]

@@ -4,6 +4,7 @@
     ".DS_Store",
     ".git",
     ".gitignore",
+    ".psci_modules",
     ".spago",
     "output",
     "venv"
@@ -19,6 +20,7 @@
     "loglevel",
     "mobily",
     "plusplus",
+    "psci",
     "purescript",
     "purs",
     "quickcheck",

@@ -2,6 +2,7 @@ severity: low
 exclude:
   - message: Dependencies
     paths:
+      - .psci_modules
       - .spago
       - node_modules
       - output
