@@ -1,7 +1,6 @@
 module Test.Merge.Pair where
 
 import Prelude
-
 import Data.Tuple (Tuple(..))
 import Merge.Pair (enumerate, twins, pairs)
 import Test.Unit (TestSuite, suite, test)

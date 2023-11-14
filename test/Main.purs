@@ -26,7 +26,6 @@ summary :: Array Int -> String
 summary x = joinWith " " [ show x, "->", show $ mergeSort x, "!=", show $ sort x ]
 
 main :: Effect Unit
-main = do
-  _ <- sequence $ runTest <$> suites
-  _ <- quickCheck' 1000 \x -> mergeSort x == sort x <?> summary x
-  pure unit
+main = void do
+  runTest <<< void $ sequence suites
+  quickCheck' 1000 \x -> mergeSort x == sort x <?> summary x
