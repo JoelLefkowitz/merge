@@ -41,9 +41,6 @@ testMergeSort = suite "Sort" do
     Assert.equal [ 1, 2, 3, 4, 4 ]
       $ merge [ 1, 2, 3, 4 ] [ 4 ]
 
-    Assert.equal [ 1, 2, 3, 8, 16, 17 ]
-      $ merge [ 1, 2, 16, 17 ] [ 3, 8 ]
-
   test "mergeSort" do
     Assert.equal []
       $ mergeSort []

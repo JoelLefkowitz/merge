@@ -9,7 +9,6 @@
   , "numbers"
   , "prelude"
   , "quickcheck"
-  , "strings"
   , "test-unit"
   , "tuples"
   ]

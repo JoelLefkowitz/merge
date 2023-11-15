@@ -1,7 +1,9 @@
 module Merge.Sort where
 
 import Prelude
+
 import Data.Array (concat, foldl, head, length, range, reverse)
+import Data.Int (even)
 import Data.Maybe (fromMaybe)
 import Data.Tuple (uncurry, Tuple(..))
 import Merge.Array (split, sublist)
@@ -11,7 +13,7 @@ import Merge.Pair (twins, pairs)
 -- merge [1, 2, 5, 6, 7] [3, 4, 6, 8, 9] = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9]
 -- 
 -- zipped = foldl join [] $ twins x:
--- [a, b] -> [ acc, pure a, sublist a b y ]: 
+-- [a, b] -> [ acc, [a], sublist a b y ]: 
 -- [1, 2] -> [[             ], [1], [    ]]
 -- [2, 5] -> [[1            ], [2], [3, 4]]
 -- [5, 6] -> [[1, 2, 3, 4   ], [5], [    ]]
@@ -52,6 +54,6 @@ mergeSort [] = []
 mergeSort [ x ] = [ x ]
 mergeSort arr = join $ foldl combine (split arr) steps
   where
-  pad x = if (mod (length x) 2 == 0) then x else x <> [ [] ]
+  pad x = if even $ length x then x else x <> [ [] ]
   combine acc _ = uncurry merge <$> pairs (pad acc)
   steps = range 0 (bits $ length arr)

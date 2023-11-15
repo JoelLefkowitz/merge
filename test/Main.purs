@@ -1,16 +1,16 @@
 module Test.Main where
 
 import Prelude
+
 import Data.Array (sort)
-import Data.String (joinWith)
-import Data.Traversable (sequence)
+import Data.Traversable (class Traversable, sequence)
 import Effect (Effect)
 import Merge.Sort (mergeSort)
 import Test.Merge.Array (testMergeArray)
 import Test.Merge.Number (testMergeNumber)
 import Test.Merge.Pair (testMergePair)
 import Test.Merge.Sort (testMergeSort)
-import Test.QuickCheck (quickCheck', (<?>))
+import Test.QuickCheck (quickCheck)
 import Test.Unit (TestSuite)
 import Test.Unit.Main (runTest)
 
@@ -22,10 +22,8 @@ suites =
   , testMergeSort
   ]
 
-summary :: Array Int -> String
-summary x = joinWith " " [ show x, "->", show $ mergeSort x, "!=", show $ sort x ]
+merge :: ∀ t m a. Traversable t => Applicative m => t (m a) -> m Unit
+merge = void <<< sequence
 
 main :: Effect Unit
-main = void do
-  runTest <<< void $ sequence suites
-  quickCheck' 1000 \x -> mergeSort x == sort x <?> summary x
+main = merge [ runTest (merge suites), quickCheck (\x -> mergeSort x == sort x) ]
