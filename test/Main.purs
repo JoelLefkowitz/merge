@@ -1,7 +1,6 @@
 module Test.Main where
 
 import Prelude
-
 import Data.Array (sort)
 import Data.Traversable (class Traversable, sequence)
 import Effect (Effect)

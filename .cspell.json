@@ -1,33 +1,29 @@
 {
   "language": "en",
   "ignorePaths": [
-    ".DS_Store",
     ".git",
     ".gitignore",
-    ".psci_modules",
+    ".husky",
     ".spago",
+    "coverage",
+    "dist",
+    "generated-docs",
     "output",
-    "venv"
+    "yarn-error.log"
   ],
-  "dictionaries": ["node", "softwareTerms", "typescript"],
+  "dictionaries": ["bash", "en-gb", "misc", "node", "softwareTerms"],
   "words": [
-    "autofix",
-    "camelcase",
-    "dhall",
-    "esbenp",
+    "bumpversion",
+    "codacy",
     "foldl",
-    "huskyrc",
-    "loglevel",
-    "mobily",
-    "plusplus",
-    "psci",
+    "forall",
+    "joellefkowitz",
+    "lefkowitz",
+    "outfile",
     "purescript",
     "purs",
-    "quickcheck",
+    "purty",
     "spago",
-    "sublist",
-    "trufflehog",
-    "uncurry",
-    "venv"
+    "uncurry"
   ]
 }

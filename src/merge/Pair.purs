@@ -1,7 +1,6 @@
 module Merge.Pair where
 
 import Prelude
-
 import Control.Alternative (guard)
 import Data.Array (length, range, tail, zip)
 import Data.Int (even)

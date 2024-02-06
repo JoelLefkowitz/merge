@@ -11,4 +11,5 @@ sublist :: ∀ a. Ord a => a -> a -> Array a -> Array a
 sublist min max arr = slice lower upper arr
   where
   lower = fromMaybe (length arr) $ findIndex (_ >= min) arr
+
   upper = fromMaybe 0 $ (length arr - _) <$> findIndex (_ < max) (reverse arr)

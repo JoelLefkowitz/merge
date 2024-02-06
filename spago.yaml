@@ -1,0 +1,29 @@
+package:
+  name: merge
+  description: Merge sort.
+  publish:
+    version: 0.1.0
+    license: MIT
+    location:
+      githubOwner: joellefkowitz
+      githubRepo: merge
+
+  dependencies:
+    - arrays: ">=5.0.1 <6.0.0"
+    - prelude: ">=5.0.1 <6.0.0"
+
+  test:
+    main: Test.Main
+    dependencies:
+      - test-unit
+      - debug
+      - effect
+
+  bundle:
+    extra_args:
+      - --minify
+      - --outfile=dist/bundle.js
+
+workspace:
+  package_set:
+    registry: 41.2.0
