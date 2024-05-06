@@ -1,6 +1,13 @@
 package:
   name: merge
   description: Merge sort.
+  repository: https://github.com/JoelLefkowitz/merge
+  homepage: https://joellefkowitz.github.io/merge
+  keywords:
+    - sort
+    - merge
+    - arrays
+
   publish:
     version: 0.1.1
     license: MIT
@@ -23,6 +30,18 @@ package:
     extra_args:
       - --minify
       - --outfile=dist/bundle.js
+
+
+metadata:
+  publisher: Pursuit
+  languages:
+    - PureScript
+
+  frameworks: []
+  paradigms:
+    - Functional
+
+  lifecycle: Alpha
 
 workspace:
   package_set:
