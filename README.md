@@ -6,7 +6,7 @@ Merge sort.
 ![Version](https://pursuit.purescript.org/packages/purescript-merge/badge)
 ![Quality](https://img.shields.io/codacy/grade/01db784f69e44e74804dd309934f95ba)
 
-## Installation
+## Installing
 
 ```bash
 spago install merge
