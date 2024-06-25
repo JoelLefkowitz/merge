@@ -1,8 +1,8 @@
-module Merge.Number where
+module Data.Numbers where
 
 import Prelude
 import Data.Int (floor, toNumber)
-import Data.Number (log) as Number
+import Data.Number as Number
 
 log :: Number -> Number -> Number
 log base x = Number.log x / Number.log base

@@ -17,19 +17,24 @@ package:
 
   dependencies:
     - arrays: ">=5.0.1 <6.0.0"
+    - control: ">=6.0.0 <7.0.0"
+    - integers: ">=6.0.0 <7.0.0"
+    - maybe: ">=6.0.0 <7.0.0"
+    - numbers: ">=6.0.0 <7.0.0"
     - prelude: ">=5.0.1 <6.0.0"
+    - tuples: ">=6.0.0 <7.0.0"
+
+  build:
+    pedanticPackages: true
+    strict: true
 
   test:
     main: Test.Main
     dependencies:
-      - test-unit
+      - assert
       - debug
       - effect
-
-  bundle:
-    extra_args:
-      - --minify
-      - --outfile=dist/bundle.js
+      - test-unit
 
 metadata:
   publisher: Pursuit
@@ -43,5 +48,5 @@ metadata:
   lifecycle: Alpha
 
 workspace:
-  package_set:
+  packageSet:
     registry: 41.2.0

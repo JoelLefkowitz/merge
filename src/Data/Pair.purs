@@ -1,4 +1,4 @@
-module Merge.Pair where
+module Data.Pair where
 
 import Prelude
 import Control.Alternative (guard)

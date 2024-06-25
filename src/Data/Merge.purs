@@ -1,13 +1,22 @@
-module Merge.Sort where
+module Data.Merge where
 
 import Prelude
-import Data.Array (concat, foldl, head, length, range, reverse)
+import Data.Array (concat, foldl, head, length, range, reverse, findIndex, slice)
 import Data.Int (even)
 import Data.Maybe (fromMaybe)
 import Data.Tuple (uncurry, Tuple(..))
-import Merge.Array (split, sublist)
-import Merge.Number (bits)
-import Merge.Pair (twins, pairs)
+import Data.Numbers (bits)
+import Data.Pair (twins, pairs)
+
+split :: ∀ f a. Applicative f => f a -> f (f a)
+split = map pure
+
+sublist :: ∀ a. Ord a => a -> a -> Array a -> Array a
+sublist min max arr = slice lower upper arr
+  where
+  lower = fromMaybe (length arr) $ findIndex (_ >= min) arr
+
+  upper = fromMaybe 0 $ (length arr - _) <$> findIndex (_ < max) (reverse arr)
 
 -- merge [1, 2, 5, 6, 7] [3, 4, 6, 8, 9] = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9]
 -- 
