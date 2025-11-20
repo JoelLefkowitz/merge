@@ -1,11 +1,12 @@
 module Test.Data.Merge where
 
 import Prelude
-import Data.Merge (merge, mergeSort, split, sublist)
-import Test.Assert (assertEqual)
-import Effect (Effect)
 
-testMerge :: Effect Unit
+import Data.Merge (merge, mergeSort, split, sublist)
+import Effect (Effect)
+import Test.Assert (assertEqual)
+
+testMerge ∷ Effect Unit
 testMerge = do
   assertEqual
     { actual: split [ 1 ]

@@ -1,11 +1,12 @@
 module Test.Data.Numbers where
 
 import Prelude
-import Data.Numbers (bits)
-import Test.Assert (assertEqual)
-import Effect (Effect)
 
-testNumbers :: Effect Unit
+import Data.Numbers (bits)
+import Effect (Effect)
+import Test.Assert (assertEqual)
+
+testNumbers ∷ Effect Unit
 testNumbers = do
   assertEqual
     { actual: bits 0

@@ -1,12 +1,6 @@
 package:
   name: merge
   description: Merge sort.
-  repository: https://github.com/JoelLefkowitz/merge
-  homepage: https://joellefkowitz.github.io/merge
-  keywords:
-    - sort
-    - merge
-    - arrays
 
   publish:
     version: 0.3.0
@@ -32,21 +26,9 @@ package:
     main: Test.Main
     dependencies:
       - assert
-      - debug
       - effect
-      - test-unit
-
-metadata:
-  publisher: Pursuit
-  languages:
-    - PureScript
-
-  frameworks: []
-  paradigms:
-    - Functional
-
-  lifecycle: Alpha
+      - quickcheck
 
 workspace:
   packageSet:
-    registry: 41.2.0
+    registry: 62.2.7

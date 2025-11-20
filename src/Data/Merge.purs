@@ -1,17 +1,27 @@
 module Data.Merge where
 
 import Prelude
-import Data.Array (concat, foldl, head, length, range, reverse, findIndex, slice)
+
+import Data.Array
+  ( concat
+  , findIndex
+  , foldl
+  , head
+  , length
+  , range
+  , reverse
+  , slice
+  )
 import Data.Int (even)
 import Data.Maybe (fromMaybe)
-import Data.Tuple (uncurry, Tuple(..))
 import Data.Numbers (bits)
-import Data.Pair (twins, pairs)
+import Data.Pair (pairs, twins)
+import Data.Tuple (Tuple(..), uncurry)
 
-split :: ∀ f a. Applicative f => f a -> f (f a)
+split ∷ ∀ f a. Applicative f ⇒ f a → f (f a)
 split = map pure
 
-sublist :: ∀ a. Ord a => a -> a -> Array a -> Array a
+sublist ∷ ∀ a. Ord a ⇒ a → a → Array a → Array a
 sublist min max arr = slice lower upper arr
   where
   lower = fromMaybe (length arr) $ findIndex (_ >= min) arr
@@ -33,20 +43,21 @@ sublist min max arr = slice lower upper arr
 -- 
 -- remainder = sublist (last x) (last y + 1) y:
 -- [8, 9]
-merge :: Array Int -> Array Int -> Array Int
+merge ∷ Array Int → Array Int → Array Int
 merge [] x = x
 
 merge x y
   | head x > head y = merge y x
   | otherwise = concat [ zipped, [ last x ], remainder ]
-    where
-    combine acc (Tuple a b) = concat [ acc, [ a ], sublist a b y ]
+      where
+      combine acc (Tuple a b) = concat [ acc, [ a ], sublist a b y ]
 
-    last = fromMaybe 0 <<< head <<< reverse
+      last = fromMaybe 0 <<< head <<< reverse
 
-    zipped = foldl combine [] $ twins x
+      zipped = foldl combine [] $ twins x
 
-    remainder = if last x <= last y then sublist (last x) (last y + 1) y else []
+      remainder =
+        if last x <= last y then sublist (last x) (last y + 1) y else []
 
 -- mergeSort [1, 2, 7, 8, 7] = [1, 2, 7, 7 8]
 -- 
@@ -61,7 +72,7 @@ merge x y
 -- merge [7         ], [8   ] -> [7, 8         ]
 -- merge [1, 2      ], [7, 8] -> [1, 2, 7, 8   ]
 -- merge [1, 2, 7, 8], [7   ] -> [1, 2, 7, 7, 8]
-mergeSort :: Array Int -> Array Int
+mergeSort ∷ Array Int → Array Int
 mergeSort [] = []
 
 mergeSort [ x ] = [ x ]

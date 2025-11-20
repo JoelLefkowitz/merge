@@ -1,12 +1,13 @@
 module Test.Data.Pair where
 
 import Prelude
-import Data.Tuple (Tuple(..))
-import Data.Pair (enumerate, twins, pairs)
-import Test.Assert (assertEqual)
-import Effect (Effect)
 
-testPair :: Effect Unit
+import Data.Pair (enumerate, pairs, twins)
+import Data.Tuple (Tuple(..))
+import Effect (Effect)
+import Test.Assert (assertEqual)
+
+testPair ∷ Effect Unit
 testPair = do
   assertEqual
     { actual: enumerate [ 1 ]
