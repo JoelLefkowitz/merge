@@ -2,7 +2,7 @@
 
 Merge sort.
 
-![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/merge/review.yml)
+![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/merge/review.yaml)
 ![Version](https://pursuit.purescript.org/packages/purescript-merge/badge)
 ![Quality](https://img.shields.io/codacy/grade/01db784f69e44e74804dd309934f95ba)
 
